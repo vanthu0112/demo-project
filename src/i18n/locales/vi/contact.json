@@ -1,0 +1,23 @@
+{
+  "contactUs": "Liên hệ với chúng tôi",
+  "contactDescription": "Đội ngũ tư vấn chuyên nghiệp sẵn sàng hỗ trợ bạn tìm được khóa học phù hợp",
+  "contactInfo": "Thông tin liên hệ",
+  "hotline": "Hotline",
+  "emailContact": "Email",
+  "address": "Địa chỉ",
+  "workingHours": "Giờ làm việc",
+  "followUs": "Theo dõi chúng tôi",
+  "sendMessage": "Gửi tin nhắn cho chúng tôi",
+  "fullName": "Họ và tên",
+  "fullNamePlaceholder": "Nhập họ và tên của bạn",
+  "emailPlaceholder": "your.email@example.com",
+  "phone": "Số điện thoại",
+  "phonePlaceholder": "0123 456 789",
+  "courseInterested": "Khóa học quan tâm",
+  "selectCourse": "Chọn khóa học",
+  "message": "Tin nhắn",
+  "messagePlaceholder": "Chia sẻ mục tiêu học tập của bạn...",
+  "newsletter": "Tôi muốn nhận thông tin khóa học và ưu đãi qua email",
+  "sendContact": "Gửi thông tin liên hệ",
+  "sending": "Đang gửi..."
+}

@@ -1,0 +1,23 @@
+{
+  "contactUs": "Contact us",
+  "contactDescription": "Professional consulting team ready to help you find the right course",
+  "contactInfo": "Contact Information",
+  "hotline": "Hotline",
+  "emailContact": "Email",
+  "address": "Address",
+  "workingHours": "Working Hours",
+  "followUs": "Follow us",
+  "sendMessage": "Send us a message",
+  "fullName": "Full Name",
+  "fullNamePlaceholder": "Enter your full name",
+  "emailPlaceholder": "your.email@example.com",
+  "phone": "Phone Number",
+  "phonePlaceholder": "0123 456 789",
+  "courseInterested": "Course of Interest",
+  "selectCourse": "Select course",
+  "message": "Message",
+  "messagePlaceholder": "Share your learning goals...",
+  "newsletter": "I want to receive course information and offers via email",
+  "sendContact": "Send contact information",
+  "sending": "Sending..."
+}
