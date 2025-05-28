@@ -1,36 +1,182 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Demo Web
 
-## Getting Started
+A modern, high-performance web application built with **Next.js 15**, featuring a robust architecture and cutting-edge technologies.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+- ⚡️ **Next.js 15** - The React Framework for production
+- 🎨 **Tailwind CSS** - Utility-first CSS framework
+- 🔥 **TypeScript** - Type safety and better developer experience
+- 📦 **Zustand** - State Management
+- 🎯 **React Hook Form** + **Zod** - Form validation and schema
+- 📱 **PWA Support** - Progressive Web App capabilities
+- 🌙 **Dark Mode** - Built-in dark mode support
+- 🧩 **Atomic Design** - Component architecture following atomic design principles
+- 🔍 **ESLint** & **Prettier** - Code quality and style enforcement
+- 🛠️ **Axios** - HTTP client with interceptor
+- 🌐 **i18n** - Internationalization support
+- 🧪 **React Query** - Data fetching and caching
+- 🐳 **Docker Support** - Containerized deployment
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 15 (App Router)
+- **UI Components:** Ant Design, Custom Components
+- **Styling:** Tailwind CSS
+- **State Management:** Zustand
+- **Form Validation:** React Hook Form + Zod
+- **HTTP Client:** Axios
+- **Date Handling:** Day.js
+- **Type Checking:** TypeScript
+- **API Layer:** React Query
+- **Icons:** Custom SVG, Ant Design Icons
+- **Package Manager:** npm / yarn / pnpm / bun
+
+---
+
+## 📦 Installation
 
 ```bash
+# Install dependencies
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔧 Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create a `.env.local` file in the root directory with the following variables:
 
-## Learn More
+```
+NEXT_PUBLIC_API_BASE_URL=your_api_url
+# Add other environment variables as needed
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏗️ Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+.
+├── public/                 # Static assets
+├── src/
+│   ├── app/                # Next.js App Router
+│   ├── components/         # Reusable components
+│   ├── config/             # App configuration and constants
+│   ├── constants/          # Shared constants
+│   ├── features/           # Main features/modules
+│   ├── hooks/              # Custom React hooks
+│   ├── i18n/               # Internationalization
+│   ├── lib/                # Utilities, axios instance, etc.
+│   ├── services/           # API communication
+│   └── shared/             # Shared components/utilities
+├── .env.sample             # Environment variable sample
+├── package.json            # Project info and scripts
+├── tsconfig.json           # TypeScript configuration
+└── ...                     # Other config files
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🚀 Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The application can be deployed easily on [Vercel](https://vercel.com/) or any Node.js hosting.
+
+**Docker:**
+```bash
+# Build Docker image
+docker build -t demo-web .
+
+# Run container
+docker run -p 3000:3000 demo-web
+```
+
+---
+
+## 🤝 Development Guidelines
+
+### Branch Naming Convention
+
+Create feature branches from the `develop` branch following this pattern:
+
+```
+feature_XXXX_[Backlog_Ticket_Number]_NN
+```
+Where:
+- `XXXX`: Feature description
+- `Backlog_Ticket_Number`: Ticket number from Backlog (e.g., DEMO-1)
+- `NN`: Sequential number for PRs with the same name (optional)
+
+**Examples:**
+- `feature_add_login_DEMO-1`
+- `feature_edited_notificationlist_DEMO-12_3`
+
+---
+
+### Pull Request Rules
+
+- **Target Branch:** Always merge to `develop` branch
+- **PR Title Format:**
+    ```
+    [Backlog_Ticket_No][Screen_ID] [Type] Description
+    ```
+    - `Backlog_Ticket_No`: Ticket number (e.g., DEMO-15)
+    - `Screen_ID`: Screen identifier (e.g., JU-0001-1)
+    - `Type`: `[ADD]` for new features, `[EDIT]` for modifications
+    - `Description`: Brief description
+
+**Examples:**
+- `[DEMO-15][JU-0001-1] [ADD] New feature implementation`
+- `[DEMO-15][JU-0001-2] [EDIT] Feature modification`
+
+**PR Description Template:**
+```
+------------------------
+【Overview】
+[Brief overview of changes]
+
+【Details】
+[Detailed description of changes]
+
+【Unit Test】
+[Test details]
+※ Please attach screenshots and video files for UI changes and validation checks
+------------------------
+```
+
+---
+
+### Development Process
+
+1. Create a feature branch from `develop`
+2. Make your changes
+3. Create a PR following the above rules
+4. Wait for review and approval
+5. Merge to `develop` branch
+
+> **Note:** Please ensure ticket numbers are accurate as incorrect numbers may affect project tracking.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
