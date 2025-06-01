@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@/theme/ThemeProvider";
 import { removeAccessToken } from "@/utils/cookiesHelper";
 import { ROUTES } from "@/constants/routes";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 const { Text } = Typography;
 
 export default function Navigation() {
@@ -17,6 +17,8 @@ export default function Navigation() {
   const { t } = useTranslation("navigation");
   const { isDark } = useTheme();
   const router = useRouter();
+  const params = useParams();
+  const currentLocale = params.locale as string;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +47,7 @@ export default function Navigation() {
 
   const handleLogout = () => {
     removeAccessToken();
-    router.push(ROUTES.LOGIN);
+    router.push(`/${currentLocale}${ROUTES.LOGIN}`);
   };
 
   return (
