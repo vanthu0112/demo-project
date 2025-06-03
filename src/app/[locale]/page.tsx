@@ -11,7 +11,7 @@ import { useUserStore } from "@/store/useUserStore";
 import { useEffect } from "react";
 
 export default function Home() {
-  const { setUser, user } = useUserStore();
+  const { setUser } = useUserStore();
 
   // Fetch user data and set it in the user store
   async function fetchUser() {
@@ -24,8 +24,6 @@ export default function Home() {
   useEffect(() => {
     fetchUser();
   }, []);
-
-  console.log("User:", user);
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">

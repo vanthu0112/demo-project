@@ -1,5 +1,8 @@
-import { getAccessToken } from "@/utils/cookiesHelper";
+import { HTTP_STATUS } from "@/constants/errors";
+import { ROUTES } from "@/constants/routes";
+import { getAccessToken, removeAccessToken } from "@/utils/cookiesHelper";
 import axios from "axios";
+const defaultLocale = "vi";
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
@@ -26,6 +29,13 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
+    // If error response status is 401 (Unauthorized), remove the access token and redirect to login
+    if (error.response?.status === HTTP_STATUS.UNAUTHORIZED) {
+      removeAccessToken();
+      const locale = window.location.pathname.split("/")[1] || defaultLocale;
+      window.location.href = `/${locale}${ROUTES.LOGIN}`;
+      return;
+    }
     // Handle errors here
     return Promise.reject(error);
   }

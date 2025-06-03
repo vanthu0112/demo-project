@@ -7,7 +7,7 @@ import Link from "next/link";
 import { GoogleIcon } from "@/components/icons/GoogleIcon";
 import { FacebookIcon, TechLearningIcon } from "@/components/icons";
 import { TechIcons } from "@/components/icons/TechIcons";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { ROUTES } from "@/constants/routes";
 import { saveAccessToken } from "@/utils/cookiesHelper";
 import { Login } from "@/services/login/loginServices";
@@ -15,6 +15,8 @@ import { Login } from "@/services/login/loginServices";
 const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const params = useParams();
+  const currentLocale = params.locale as string;
 
   // Handle form submission
   const onFinish = async (data: { email: string; password: string }) => {
@@ -23,7 +25,7 @@ const LoginPage = () => {
     if (response.AccessToken && response.IdToken) {
       setLoading(false);
       saveAccessToken(response.IdToken);
-      router.push(ROUTES.HOME);
+      router.push(`/${currentLocale}${ROUTES.HOME}`);
     }
   };
 
