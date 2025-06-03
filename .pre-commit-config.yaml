@@ -1,0 +1,19 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: end-of-file-fixer           # add a newline at the end of files
+      - id: trailing-whitespace         # remove trailing whitespace
+      - id: check-yaml                  # check format file YAML
+
+
+  - repo: https://github.com/psf/black
+    rev: 24.3.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/jorisroovers/gitlint
+    rev: v0.18.0
+    hooks:
+      - id: gitlint # check commit messages
+        stages: [commit-msg]

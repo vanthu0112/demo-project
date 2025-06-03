@@ -7,10 +7,10 @@ interface IconProps {
   className?: string;
 }
 
-export const CodeIcon: React.FC<IconProps> = ({ 
-  size = 24, 
-  color = "#52c41a", 
-  className = "" 
+export const CodeIcon: React.FC<IconProps> = ({
+  size = 24,
+  color = "#52c41a",
+  className = ""
 }) => {
   return (
     <svg

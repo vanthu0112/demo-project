@@ -18,7 +18,6 @@ A modern, high-performance web application built with **Next.js 15**, featuring 
 - 🛠️ **Axios** - HTTP client with interceptor
 - 🌐 **i18n** - Internationalization support
 - 🧪 **React Query** - Data fetching and caching
-- 🐳 **Docker Support** - Containerized deployment
 
 ---
 
@@ -100,15 +99,6 @@ NEXT_PUBLIC_API_BASE_URL=your_api_url
 ## 🚀 Deployment
 
 The application can be deployed easily on [Vercel](https://vercel.com/) or any Node.js hosting.
-
-**Docker:**
-```bash
-# Build Docker image
-docker build -t demo-web .
-
-# Run container
-docker run -p 3000:3000 demo-web
-```
 
 ---
 

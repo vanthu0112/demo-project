@@ -16,4 +16,3 @@ export function removeThemeFromLocalStorage(storageKey: string) {
   if (!storageKey) return;
   return localStorage.removeItem(storageKey);
 }
-
