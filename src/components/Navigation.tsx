@@ -63,7 +63,7 @@ export default function Navigation() {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center">
-              <Text className="text-2xl font-bold text-blue-600 m-0">
+              <Text className="text-2xl font-bold font-roboto text-blue-600 m-0">
                 LearnPro
               </Text>
             </div>

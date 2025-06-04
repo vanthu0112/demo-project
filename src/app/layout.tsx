@@ -6,6 +6,7 @@ import "./globals.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 // import { AntdConfigProvider } from "@/lib/theme/AntdConfigProvider";
 import "@/i18n/i18n"; // Ensure i18n is initialized
+import { Roboto } from "next/font/google";
 import { ThemeProvider } from "@/theme/ThemeProvider";
 
 const geistSans = Geist({
@@ -16,6 +17,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const roboto = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-roboto",
 });
 
 // export const metadata: Metadata = {
@@ -32,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} `}
       >
         <QueryClientProvider client={queryClient}>
           <ThemeProvider>

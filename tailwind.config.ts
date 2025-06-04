@@ -14,6 +14,12 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-sans)"],
+        roboto: ["var(--font-roboto)"],
+        serif: ["var(--font-serif)"],
+        mono: ["var(--font-mono)"],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -95,5 +101,6 @@ export default {
       },
     },
   },
+
   plugins: [],
 } satisfies Config;
