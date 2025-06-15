@@ -16,6 +16,7 @@
     "antd": "^5.25.2",
     "axios": "^1.9.0",
     "class-variance-authority": "^0.7.1",
+    "crypto-js": "^4.2.0",
     "drizzle-orm": "^0.43.1",
     "drizzle-zod": "^0.8.2",
     "i18next": "^25.2.0",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/crypto-js": "^4.2.2",
     "@types/i18next": "^12.1.0",
     "@types/i18next-browser-languagedetector": "^2.0.2",
     "@types/js-cookie": "^3.0.6",

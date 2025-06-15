@@ -1,6 +1,5 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { Form, Input, Button, Checkbox, Divider } from "antd";
 import Link from "next/link";
@@ -11,23 +10,71 @@ import { useParams, useRouter } from "next/navigation";
 import { ROUTES } from "@/constants/routes";
 import { saveAccessToken } from "@/utils/cookiesHelper";
 import { Login } from "@/services/login/loginServices";
+import { decrypt, encrypt } from "@/utils/cryptoHelper";
+import { useLoadingStore } from "@/store/useLoadingStore";
+
+import {
+  getInfoAccount,
+  removeInfoAccount,
+  saveInfoAccount,
+} from "@/utils/localStorageHelper";
 
 const LoginPage = () => {
-  const [loading, setLoading] = useState(false);
+  const { setLoading } = useLoadingStore.getState();
   const router = useRouter();
   const params = useParams();
+  const [form] = Form.useForm();
+
+  const [remember, setRemember] = useState(false);
   const currentLocale = params.locale as string;
 
   // Handle form submission
-  const onFinish = async (data: { email: string; password: string }) => {
-    setLoading(true);
-    const response = await Login(data.email, data.password);
-    if (response.AccessToken && response.IdToken) {
+  const onFinish = async (data: {
+    email: string;
+    password: string;
+    remember: boolean;
+  }) => {
+    try {
+      // Encrypt the password using CryptoJS
+      const encryptedPassword = encrypt(data.password);
+      setLoading(true);
+
+      const response = await Login(data.email, data.password);
+      if (response.AccessToken && response.IdToken) {
+        saveAccessToken(response.IdToken);
+        router.push(`/${currentLocale}${ROUTES.HOME}`);
+        // If "remember me" is checked, save the token in localStorage
+        if (data.remember) {
+          saveInfoAccount({
+            email: data.email,
+            password: encryptedPassword,
+          });
+        } else {
+          removeInfoAccount();
+        }
+      }
+    } finally {
       setLoading(false);
-      saveAccessToken(response.IdToken);
-      router.push(`/${currentLocale}${ROUTES.HOME}`);
     }
   };
+
+  // Load saved account information if available
+  useEffect(() => {
+    const savedAccount = getInfoAccount();
+    if (savedAccount) {
+      const { email, password } = savedAccount;
+      // Decrypt the password using CryptoJS
+      const decryptedPassword = decrypt(password);
+
+      // Set the form values with the saved email and decrypted password
+      form.setFieldsValue({
+        email,
+        password: decryptedPassword,
+        remember: true,
+      });
+      setRemember(true);
+    }
+  }, [form]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -51,14 +98,16 @@ const LoginPage = () => {
         {/* Login Form */}
         <section className="bg-white rounded-xl shadow-lg p-8">
           <Form
+            form={form}
             name="login"
             layout="vertical"
             onFinish={onFinish}
             className="space-y-6"
             autoComplete="off"
             initialValues={{
-              email: "AIC0001000",
-              password: "Laplas12345",
+              email: "",
+              password: "",
+              remember: false,
             }}
           >
             <Form.Item
@@ -99,7 +148,14 @@ const LoginPage = () => {
 
             <div className="flex items-center justify-between mb-4">
               <Form.Item name="remember" valuePropName="checked" noStyle>
-                <Checkbox className="text-blue-600">Ghi nhớ đăng nhập</Checkbox>
+                <Checkbox
+                  className="text-blue-600"
+                  name="isChecked"
+                  checked={remember}
+                  onChange={(e) => setRemember(e.target.checked)}
+                >
+                  Ghi nhớ đăng nhập
+                </Checkbox>
               </Form.Item>
               <Link
                 href="/forgot-password"
@@ -113,7 +169,7 @@ const LoginPage = () => {
               <Button
                 type="primary"
                 htmlType="submit"
-                loading={loading}
+                // loading={loading}
                 className="w-full h-12 flex justify-center py-3 px-4 rounded-lg text-xl font-bold"
               >
                 Đăng nhập
@@ -160,7 +216,7 @@ const LoginPage = () => {
         </section>
 
         {/* Features */}
-        <section className="bg-white rounded-xl shadow-lg p-6 mt-8">
+        {/* <section className="bg-white rounded-xl shadow-lg p-6 mt-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">
             Tại sao chọn TechLearn Pro?
           </h3>
@@ -177,7 +233,7 @@ const LoginPage = () => {
               </li>
             ))}
           </ul>
-        </section>
+        </section> */}
       </div>
     </div>
   );

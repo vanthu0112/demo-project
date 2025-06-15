@@ -9,6 +9,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "@/i18n/i18n"; // Ensure i18n is initialized
 import { Roboto } from "next/font/google";
 import { ThemeProvider } from "@/theme/ThemeProvider";
+import { CommonLoading } from "@/components/CommonLoading";
+import { useLoadingStore } from "@/store/useLoadingStore";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +39,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const queryClient = new QueryClient();
+  const loading = useLoadingStore((state) => state.loading);
   return (
     <html lang="en">
       <body
@@ -45,6 +48,8 @@ export default function RootLayout({
         <QueryClientProvider client={queryClient}>
           <ThemeProvider>
             {/* <AntdConfigProvider>{children}</AntdConfigProvider> */}
+            {loading && <CommonLoading fullscreen />}
+
             {children}
           </ThemeProvider>
         </QueryClientProvider>
